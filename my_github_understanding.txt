@@ -1,0 +1,217 @@
+GIT setting, understanding and details:
+
+
+24/09/2024
+----------------------------------------------------------------------------------------------------
+==>First I downloaded git from https://git-scm.com/downloads/win
+==>Then I did the setup and configuration steps from https://www.youtube.com/watch?v=AdzKzlp66sQ
+
+==> STEPS DONE BY ME: 
+
+1) Made a new github account and made a new repository named week1:
+#git init
+#git config --global user.email "my email id"
+#git config --global user.name "my user name"
+
+2) Commit all the changes to the main branch and added its remote origin
+#git branch -M main
+#git remote add origin https://github.com/rawhide99/week1.git
+#https://github.com/rawhide99/week1.git
+Note: Here, instead of origin we can keep any name because that name will be used to access that url.
+
+3) Also added C codes in it and commited it 
+#git add .
+#git commit -m "Any comments" file name
+#git status
+
+==> In this steps, There was ERROR occuring like : 
+	Austraxpc24@Austraxpc24 MINGW64 ~/Desktop/Ramya/week1 (main)
+	$ git pull origin main
+	From https://github.com/rawhide99/week1
+	 * branch            main       -> FETCH_HEAD
+	fatal: refusing to merge unrelated histories
+
+so, that was solved using this git command:
+#git pull origin> main --allow-unrelated-histories
+
+4) Push all the changes to main branch
+git push -u origin main
+
+5) I also pulled that git repository to a local folder using:
+#git pull
+
+6) I also cloned some online repository on my local machine using:
+#git clone "http link of that repository" "Folder_name"
+
+7) I did wanted to see all my recent commits on my terminal so that was done by using:
+#git log
+
+8) Also, After making a new file and any remaining changes which were not committed that were observed by:
+#git status
+
+==> If every thing was pushed and there are no new changes, it shows as:
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+==> If there are any untracked files, it shows as: 
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        my_github_understanding.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+---------------------------------------------------------------------------------------------
+
+
+
+
+
+
+25/09/2024
+----------------------------------------------------------------------------------------------
+Local operations of git is divided in three steps:
+1) Working directory: The directory which is initialised with git on our local machine.
+2) Staging area: Once we add our file, it goes in staging area and still is remaining to go onto our repository
+==> Before pushing onto repository, we have to commit that files, in my terms it means to take a snapshot of finalised form, to save the latest changes
+3) Remote Repo: Once we push our file, it can be seen on our repository on our github account.
+
+To send our files to staging area, we do: git add filename
+To commit the latest changes, we do: git commit -m "Add comments" "File name"
+To push our files, we do: git push -u origin main
+
+We can check the status of our files by git command : git status
+We can see our latest/ recent commits by: git log
+
+If we want to our folder to be no more a repository we can do: rm -rf .git ==> please take care before doing this
+We can ignore the files which we want to keep in our folder but we do not need to push them to our repository by adding its name in .gitignore file
+#touch .gitignore
+#name of file to be ignored should be written in .gitignore and you can check that it will be not shown as untracked or modified, etc.
+
+If we want to compare working directory with staging area, we can do is : git diff
+#git diff ==> it will show that what changes are added/deleted in your file.
+
+If we want to compare our staging area with our second last commit.
+#git diff --staged
+
+If we want all our tracked files, the files which are already added by git add command can be directly be committed without going to staging area.
+So, we can keep staging area for tracked files by using command:
+#git commit -a -m "Any comment"
+
+If we are renaming a file in our folder, git will think that the file with previous name has been deleted and new file has been added.
+ex: we are renaming a prog1.c to demo_prog.c then this will cause issue.
+To avoid that we need to again push that file with new name and commit it
+#git add .
+#git commit -m "Comments"
+
+If we want to delete remove any file, we can do that using: 
+#git rm "File name"
+#git commit -m "Comments"
+
+If we directly want to rename our file using git, we can do it using:
+#git mv "File_name" "New_name"
+#git commit -m "Comments"
+
+==> MISCALLEMOUS CASE:-
+If we have pushed a file to remote repository and now we don't want to track it, so we will put it in .gitignore.
+Now, if we do any changes in that file, still that file will be shown in modified section when we do git status.
+Now, the question is even if it is in .gitignore file, why it is still seen?
+To remove that and stop tracking the file we need to run this command:
+#git rm --cached "File_name"
+#git commit -m "Comments"
+
+If we want to see the commits along with the changes, we can do:
+#git log -p
+
+If I want to see the last 3 commits with the changes, then we can do it using:
+#git log -p -3
+
+Also, we can see the commits and changes in it briefly using:
+#git log --stat
+
+Also, if we want to see all our commits with one line description 
+#git log --pretty=oneline
+OR
+#git log --pretty=short
+
+If we want commits with time within previous 2 days, we can run a command:
+#git log --since=2.days
+
+We can similarly do that stuff for months and years i.e.,
+#git log --since=3.weeks
+OR
+#git log --since=2.years
+
+We can also see the format of commits with commit id and author name like: 
+#git log --pretty=format:"%h -- %an"
+If we want to see it with author email, then
+#git log --pretty=format:"%h -- %an --%ae"
+
+We can explore more options of git log using: https://git-scm.com/docs/git-log
+
+Now if we want to change anything in commits, we can do it using:
+#git commit --amend
+
+If we want to unstage a file that is already been staged, then It can be done by:
+#git restore --staged "file_name"
+
+If we mistakenly modified a file and deleted some of our important data, then that can be reversed by matching it with previous commit using command:
+#git checkout -- "file_name"
+Note:This cannot be done for .gitignore
+
+If we have modified more than one file, then we again want our previous data back using command:
+#git checkout -f
+
+If we want to which remote repositories are there, then we can run:
+#git remote
+
+If we want to know which url are linked, then we can do
+#git remote -v
+
+If we want to set an alias(any other name) for any command, we can do it using:
+#git config --global alias st.status
+Now, instead of git status we can use:
+#git st
+
+another Ex:
+#git config --global alias.unstage 'restore --staged --'
+Now we can use:
+#git unstage "File_name"
+
+Now, If we want to make a whole new branch then we can run:
+#git checkout -b "branch name"
+
+If we want to see all branches:
+#git branch
+
+If we want to switch back to the main branch:
+#git checkout main
+
+If you want to delete a branch that is not merged, then we can do:
+#git branch -D "branch_name"
+
+If we want to delete a local branch
+#git branch -d branch_name
+
+If we want to merge a branch 
+#git merge "branch_name"
+
+If we want to see the branches that have been already merged:
+#git branch --merged
+
+If we want to see the branches that are not merged.
+#git branch --no-merged
+
+If we want to push a branch remotely
+#git push origin "branch name"
+
+
+
+ 
+
+
+
+
