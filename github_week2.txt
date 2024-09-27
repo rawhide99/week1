@@ -1,0 +1,54 @@
+2nd week : Git Training
+==> git checkout and git diff are already completed in week 1.
+
+26/09/2024
+---------------------------------------------------------------------------------
+
+#git revert and reset
+
+If we want to revert back a commit, we can use:
+#git revert <commit-id>
+==> But remember this creates a new commit that undergoes changes from the specific commit.
+
+If we want to revert the commit from a specfic commit id, or we want to take range:
+#git revert <oldest-commit-id> <newest-commit-id>
+
+NOTE: git revert doesn't rewrite history which means it is safe to use in shared repositories.
+
+If we want to revert changes but do not create a new commit, then we can use:
+#git revert --no-commit <commit-id>
+
+If we want to unstage the changes while keeping them in working directory, we can do:
+#git reset <commit-id>
+
+If we want to uncommit changes while keeping them ready to be re-committed, then do:
+#git reset --soft <commit>
+
+If we want to do changes that we no longer want or cleanup the branch, then:
+#git reset --hard <commit>
+
+Mixed: Unstages changes, keeps them in the working directory.
+Soft: Keeps changes staged.
+Hard: Discards all changes.
+
+NOTE: 	Reset changes your commit history and can modify your working state.
+	Revert creates a new commit that negates the effects of a previous one, preserving the commit history.
+
+#git clone and fork
+
+If we want to download any repositoy on our local machine for any purpose, we use:
+#git clone <github repo url>
+==> we get a complete copy of a repository and its entire history.
+
+If we want to clone a specific branch instead of a given branch, then we can do:
+#git clone -b <branch-name> <repository-url>
+
+If we want to clone repository with its submodules, then we can do is:
+#git clone --recurse-submodules <repository-url>
+
+NOTE: 	Clone is about making a local copy of a repository (often your own)
+	Fork creates a personal copy of someone else's repository, enabling you to work on it and propose changes without affecting the original.
+
+Forking is typically done on web surfaces or github UI.
+
+
