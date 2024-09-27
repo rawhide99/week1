@@ -1,10 +1,10 @@
 2nd week : Git Training
-==> git checkout and git diff are already completed in week 1.
+==> GIT CHECKOUT and GIT DIFF are already completed in week 1.
 
 26/09/2024
 ---------------------------------------------------------------------------------
 
-#git revert and reset
+#GIT REVERT AND RESET
 
 If we want to revert back a commit, we can use:
 #git revert <commit-id>
@@ -34,7 +34,7 @@ Hard: Discards all changes.
 NOTE: 	Reset changes your commit history and can modify your working state.
 	Revert creates a new commit that negates the effects of a previous one, preserving the commit history.
 
-#git clone and fork
+#GIT CLONE AND FORK
 
 If we want to download any repositoy on our local machine for any purpose, we use:
 #git clone <github repo url>
@@ -50,5 +50,117 @@ NOTE: 	Clone is about making a local copy of a repository (often your own)
 	Fork creates a personal copy of someone else's repository, enabling you to work on it and propose changes without affecting the original.
 
 Forking is typically done on web surfaces or github UI.
+------------------------------------------------------------------------------------
+
+
+
+27/09/2024
+------------------------------------------------------------------------------------
+
+#GIT TAG
+
+git tag is used to create tags in Git, which are generally used to mark specific points in the repository's history, typically for releases or any valuable breakpoint.
+With help of this breakpoints/milestones, the team members working on same repository comes to know about the last important point completed or achieved. 
+Tags can be created in git using command:
+#git tag "tag-name"
+
+
+We can see different tags using:
+#git tag
+
+If we want to see a particular tag, we can use:
+git show "tag-name"
+
+For Ex:
+--------------------------------------------------------------
+Austraxpc24@Austraxpc24 MINGW64 ~/Desktop/Ramya/week1 (main)
+$ git show First-week
+commit 327279a9bb5384c4ecce3d8aba528e783ea52fab (HEAD -> main, tag: First-week, origin/main)
+Author: Dexter <ramya.austrax239@gmail.com>
+Date:   Fri Sep 27 14:56:01 2024 +0530
+
+    Git files also added to a folder Github_understanding
+
+diff --git a/github_week1.txt b/Github_understanding/github_week1.txt
+similarity index 100%
+rename from github_week1.txt
+rename to Github_understanding/github_week1.txt
+diff --git a/github_week2.txt b/Github_understanding/github_week2.txt
+similarity index 100%
+rename from github_week2.txt
+rename to Github_understanding/github_week2.txt
+-------------------------------------------------------------
+
+If we want an annotated git tag, then we can use:
+#git tag -a "tag-name" -m "Any message or comments or name, email or anything"
+NOTE: Tags can be lightweight or annotated.
+
+Also remember, for annotated tags we can see information using:
+#git show "tag-name"
+
+Tags are directly not available at our remote repository, we need to push the tags using: 
+#git push origin "tag-name"
+
+If we want to push all the git tags which we have created locally, then we can do is
+#git push --tags
+
+#GIT STASH
+It is used to save changes temporarily, whenever we want to commit the changes after some amount of time.
+Usually, used when we need to switch branch or pull changes but we want to keep current modifications.
+
+So, to save uncommited changes we can use:
+#git stash
+
+For EX:
+I did it as
+-------------------------------------------------------------
+Austraxpc24@Austraxpc24 MINGW64 ~/Desktop/Ramya/week1 (main)
+$ git stash
+Saved working directory and index state WIP on main: 327279a Git files also added to a folder Github_understanding
+
+Austraxpc24@Austraxpc24 MINGW64 ~/Desktop/Ramya/week1 (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+Austraxpc24@Austraxpc24 MINGW64 ~/Desktop/Ramya/week1 (main)
+$ git stash list
+stash@{0}: WIP on main: 327279a Git files also added to a folder Github_understanding
+-------------------------------------------------------------
+
+we can also see the what is stashed using:
+#git stash list
+
+we can also save the changes with a particular message, so we can remember it later:
+#git stash save "message"
+
+If we want to reapply the most recent stash, then we can do:
+#git stash apply
+
+If we want to remove all the stash, we can do:
+#git stash clear
+
+If we want to clear any specific stash, then it can be done using command:
+#git stash drop stash@{index}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
