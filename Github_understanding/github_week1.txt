@@ -209,6 +209,7 @@ If we want to push a branch remotely
 #git push origin "branch name"
 
 ==> This text file is completed
+==> doing changes from github UI
 
  
 
